@@ -40,9 +40,7 @@
     - name: Add Docker repository
       ansible.builtin.apt_repository:
         repo: >-
-          deb [arch={{ arch_mapping[ansible_architecture] | default(ansible_architecture) }}
-          signed-by=/etc/apt/keyrings/docker.gpg]
-          https://download.docker.com/linux/ubuntu {{ ansible_lsb.codename }} stable
+          deb https://download.docker.com/linux/ubuntu focal stable
         filename: docker
         state: present
 
