@@ -59,10 +59,10 @@
         update_cache: true
       loop:
         - docker-ce
-        # - docker-ce-cli
-        # - containerd.io
-        # - docker-buildx-plugin
-        # - docker-compose-plugin
+        - docker-ce-cli
+        - containerd.io
+        - docker-buildx-plugin
+        - docker-compose-plugin
 
     # - name: Add Docker group
     #   ansible.builtin.group:
