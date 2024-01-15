@@ -53,27 +53,27 @@
         update_cache: true
       loop:
         - docker-ce
-        - docker-ce-cli
-        - containerd.io
-        - docker-buildx-plugin
-        - docker-compose-plugin
+        # - docker-ce-cli
+        # - containerd.io
+        # - docker-buildx-plugin
+        # - docker-compose-plugin
 
-    - name: Add Docker group
-      ansible.builtin.group:
-        name: docker
-        state: present
+    # - name: Add Docker group
+    #   ansible.builtin.group:
+    #     name: docker
+    #     state: present
 
-    - name: Add user to Docker group
-      ansible.builtin.user:
-        name: "semaphore"
-        groups: docker
-        append: true
+    # - name: Add user to Docker group
+    #   ansible.builtin.user:
+    #     name: "semaphore"
+    #     groups: docker
+    #     append: true
 
-    - name: Enable and start Docker services
-      ansible.builtin.systemd:
-        name: "{{ item }}"
-        enabled: true
-        state: started
-      loop:
-        - docker.service
-        - containerd.service
+    # - name: Enable and start Docker services
+    #   ansible.builtin.systemd:
+    #     name: "{{ item }}"
+    #     enabled: true
+    #     state: started
+    #   loop:
+    #     - docker.service
+    #     - containerd.service
