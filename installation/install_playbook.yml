@@ -93,9 +93,10 @@
     - name: Docker - Install, configure, and start process
       block:
         - name: pull metabase image
-          docker_image:
-            name: metabase/metabase:latest
-            source: pull
+          # docker_image:
+          #   name: metabase/metabase:latest
+          #   source: pull
+          command: docker run -d -p 3000:3000 --name metabase metabase/metabase
         
       when: run_MetabaseInstall
       ignore_errors: false
