@@ -1,0 +1,9 @@
+DatabaseDirectory /var/lib/clamav
+LogFile /var/log/clamav/clamav.log
+PidFile /var/run/clamav/clamav.pid
+LocalSocket /var/run/clamav/clamav.sock
+MaxScanJobs 10
+
+# Update database
+DatabaseUpdateInterval 3600
+FreshclamInterval 10800

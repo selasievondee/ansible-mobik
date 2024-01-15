@@ -1,0 +1,35 @@
+- hosts: all
+  become: yes
+  tasks:
+  - name: Update the package cache
+    apt:
+      update_cache: yes
+
+  - name: Upgrade all packages
+    apt:
+      upgrade: dist
+
+  - name: Check if a reboot is required
+    stat:
+      path: /var/run/reboot-required
+      get_md5: no
+    register: reboot_required_file
+
+  - name: Remove unused packages
+    apt:
+      autoremove: yes
+
+  - name: Run top in batch mode
+    command: top -b -n 1
+    register: top_output
+
+  - name: Display top output
+    debug:
+      var: top_output.stdout
+
+  - name: Optimize the system
+    apt:
+      name: apt-utils
+      state: present
+    command: apt-get autoclean
+    command: apt-get autoremove
