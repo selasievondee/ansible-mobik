@@ -92,11 +92,13 @@
     
     - name: Docker - Install, configure, and start process
       block:
-        - name: pull metabase image
-          # docker_image:
-          #   name: metabase/metabase:latest
-          #   source: pull
-          command: docker run -d -p 3000:3000 --name metabase metabase/metabase
+        # - name: pull metabase image
+        #   command: docker run -d -p 3000:3000 --name metabase metabase/metabase
+        
+        - name: allow firewall and open port 300
+          shell: |
+            ufw enable
+            ufw allow 3000
         
       when: run_MetabaseInstall
       ignore_errors: false
