@@ -5,6 +5,7 @@
       x86_64: amd64
       aarch64: arm64
     run_DockerInstall: false
+    run_MetabaseInstall: true
 
   tasks:
     - name: Docker - Install, configure, and start process
@@ -85,7 +86,16 @@
               state: started
             loop:
               - docker.service
-              - containerd.service
-              
+              - containerd.service     
       when: run_DockerInstall
+      ignore_errors: false
+    
+    - name: Docker - Install, configure, and start process
+      block:
+        - name: pull metabase image
+          docker_image:
+            name: metabase/metabase:latest
+            source: pull
+        
+      when: run_MetabaseInstall
       ignore_errors: false
